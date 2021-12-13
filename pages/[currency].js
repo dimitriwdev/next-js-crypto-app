@@ -1,8 +1,6 @@
 import Layout from "../components/Layout";
 
 export default function Currency({ res }) {
-  console.log("res crypto", res);
-
   return (
     <Layout page={"Page " + res.name}>
       <div className="relative hover:shadow md p-8 border border-blue-300 sm:rounded-3xl bg-blue-100 md:w-auto flex-1 mx-5">
@@ -26,10 +24,11 @@ export default function Currency({ res }) {
 }
 
 export async function getServerSideProps({ query }) {
-  console.log("query", query.currency);
+  const apiKey = process.env.DB_APIKEY;
+
   try {
     const res = await fetch(
-      `https://api.nomics.com/v1/currencies?key=eee26bd908841df0169298a25db67956cb5317db&ids=${query.currency}&attributes=id,name,logo_url,description,reddit_url`
+      `https://api.nomics.com/v1/currencies?key=${apiKey}&ids=${query.currency}&attributes=id,name,logo_url,description,reddit_url`
     );
     const result = await res.json();
 

@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 
 export default function Home({ res }) {
-  console.log("res", res);
   return (
     <Layout page={"crypto watch - accueil"}>
       <ul className="flex justify-around py-10">
@@ -20,7 +19,7 @@ export default function Home({ res }) {
                     className="w-20 h-20 mx-auto mb-6"
                   />
                 </div>
-                <h2 className="text-2xl mb-6 upperecase tracking-wider">
+                <h2 className="text-2xl mb-6 uppercase tracking-wider">
                   {crypto.name}
                 </h2>
                 <h3 className="font-bold text-2xl mb-4 h-20">
@@ -78,9 +77,11 @@ export default function Home({ res }) {
 }
 
 export async function getStaticProps(context) {
+  const apiKey = process.env.DB_APIKEY;
+
   try {
     const res = await fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=eee26bd908841df0169298a25db67956cb5317db&ids=BTC,ETH,XRP&interval=1d,30d,365d`
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=BTC,ETH,XRP&interval=1d,30d,365d`
     ).then((res) => res.json());
 
     return {

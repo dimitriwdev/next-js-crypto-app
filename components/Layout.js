@@ -3,13 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Layout({ children, page }) {
+  const year = new Date().getFullYear();
   return (
     <div className="bg-blue-50 pt-5 text-center min-h-screen">
       <Head>
         <title>{page}</title>
       </Head>
       <header className="container-lg">
-        <h1 className="text-5xl mb-2">CRYPTO WATCH</h1>
+        <h1 className="text-5xl mb-2">CRYPTO APP</h1>
         <div className="inline-grid grid-cols-2 gap-x-10 p-4">
           <Link href="/">
             <button className="bg-blue-200 p-3 m-2 rounded-3xl hover:shadow-md border-2 border-blue-300">
@@ -46,7 +47,7 @@ export default function Layout({ children, page }) {
         <ul className="pt-10 pb-4 flex justify-around">
           <li>A propos</li>
           <li>Qui sommes-nous</li>
-          <li>Dimitri - 2021</li>
+          <li>Dimitri - {year}</li>
         </ul>
         <p>
           Donec sollicitudin molestie malesuada. Nulla porttitor accumsan
